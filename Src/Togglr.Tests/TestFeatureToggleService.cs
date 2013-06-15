@@ -1,6 +1,7 @@
 ﻿using System;
 using Moq;
 using NUnit.Framework;
+using Togglr.Tests.Builders;
 
 namespace Togglr.Tests
 {
@@ -64,37 +65,5 @@ namespace Togglr.Tests
     public interface IFeatureToggleValueProvider
     {
         bool IsEnabled(string featureToggleIdentity);
-    }
-
-    internal class FeatureToggleValueProviderBuilder
-    {
-        public IFeatureToggleValueProvider Build()
-        {
-            return new Mock<IFeatureToggleValueProvider>().Object;
-        }
-    }
-
-    internal class IFeatureToggleBuilder
-    {
-        private string _identity;
-
-        public IFeatureToggleBuilder()
-        {
-            _identity = "a feature toggle identity";
-        }
-
-        public IFeatureToggleBuilder WithIdentity(string identity)
-        {
-            _identity = identity;
-            return this;
-        }
-
-        public IFeatureToggle Build()
-        {
-            var stub = new Mock<IFeatureToggle>();
-            stub.Setup(t => t.Identity).Returns(_identity);
-
-            return stub.Object;
-        }
     }
 }
