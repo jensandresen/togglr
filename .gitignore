@@ -1,0 +1,7 @@
+Src/packages/
+!Src/packages/repositories.config
+Src/*/bin
+Src/*/obj
+*.user
+*.suo
+*_Resharper.*
