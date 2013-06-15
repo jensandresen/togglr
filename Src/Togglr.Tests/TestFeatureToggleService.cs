@@ -10,7 +10,7 @@ namespace Togglr.Tests
         [Test]
         public void FeatureValueProvider_returns_expected()
         {
-            var dummyValueProvider = new Mock<IFeatureToggleValueProvider>().Object;
+            var dummyValueProvider = new FeatureToggleValueProviderBuilder().Build();
             var sut = new FeatureToggleService(dummyValueProvider);
 
             Assert.AreSame(dummyValueProvider, sut.FeatureToggleValueProvider);
@@ -25,17 +25,14 @@ namespace Togglr.Tests
         [Test]
         public void IsEnabled_uses_FeatureToggleValueProvider_to_retrieve_value_of_feature_toggle()
         {
-            const string featureToggleIdentity = "a feature toggle identifier";
-
             var mock = new Mock<IFeatureToggleValueProvider>();
 
-            var featureToggleStub = new Mock<IFeatureToggle>();
-            featureToggleStub.Setup(t => t.Identity).Returns(featureToggleIdentity);
+            var featureToggleStub = new IFeatureToggleBuilder().Build();
 
             var sut = new FeatureToggleService(mock.Object);
-            sut.IsEnabled(featureToggleStub.Object);
+            sut.IsEnabled(featureToggleStub);
 
-            mock.Verify(p => p.IsEnabled(featureToggleIdentity));
+            mock.Verify(p => p.IsEnabled(featureToggleStub.Identity));
         }
     }
 
@@ -67,5 +64,37 @@ namespace Togglr.Tests
     public interface IFeatureToggleValueProvider
     {
         bool IsEnabled(string featureToggleIdentity);
+    }
+
+    internal class FeatureToggleValueProviderBuilder
+    {
+        public IFeatureToggleValueProvider Build()
+        {
+            return new Mock<IFeatureToggleValueProvider>().Object;
+        }
+    }
+
+    internal class IFeatureToggleBuilder
+    {
+        private string _identity;
+
+        public IFeatureToggleBuilder()
+        {
+            _identity = "a feature toggle identity";
+        }
+
+        public IFeatureToggleBuilder WithIdentity(string identity)
+        {
+            _identity = identity;
+            return this;
+        }
+
+        public IFeatureToggle Build()
+        {
+            var stub = new Mock<IFeatureToggle>();
+            stub.Setup(t => t.Identity).Returns(_identity);
+
+            return stub.Object;
+        }
     }
 }
