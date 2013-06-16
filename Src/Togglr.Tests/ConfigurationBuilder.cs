@@ -1,3 +1,4 @@
+using System.IO;
 using System.Web;
 
 namespace Togglr.Tests
@@ -13,8 +14,15 @@ namespace Togglr.Tests
 
         private IFeatureToggleValueProvider CreateDefaultValueProvider()
         {
-            var filename = HttpContext.Current.Server.MapPath("~/App_Data/") + "TogglrFeatureToggles.txt";
-            return new TogglrSimpleFileValueProvider(filename);
+            const string fileName = "TogglrFeatureToggles.txt";
+
+            var folderName = HttpContext.Current != null
+                               ? HttpContext.Current.Server.MapPath("~/App_Data/")
+                               : Path.GetFullPath(@".\");
+
+            var fullPath = Path.Combine(folderName, fileName);
+
+            return new TogglrSimpleFileValueProvider(fullPath);
         }
 
         public ConfigurationBuilder WithValueProvider(IFeatureToggleValueProvider valueProvider)
