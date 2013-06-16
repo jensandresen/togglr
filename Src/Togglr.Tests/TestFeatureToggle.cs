@@ -19,17 +19,4 @@ namespace Togglr.Tests
             Assert.AreEqual("FeatureToggle", sut.Identity);
         }
     }
-
-    public interface IFeatureToggle
-    {
-        string Identity { get; }
-    }
-
-    public class FeatureToggle : IFeatureToggle
-    {
-        public string Identity
-        {
-            get { return this.GetType().Name; }
-        }
-    }
 }

@@ -36,34 +36,4 @@ namespace Togglr.Tests
             mock.Verify(p => p.IsEnabled(featureToggleStub.Identity));
         }
     }
-
-    public class FeatureToggleService
-    {
-        private readonly IFeatureToggleValueProvider _featureToggleValueProvider;
-
-        public FeatureToggleService(IFeatureToggleValueProvider featureToggleValueProvider)
-        {
-            if (featureToggleValueProvider == null)
-            {
-                throw new ArgumentNullException("featureToggleValueProvider");
-            }
-
-            _featureToggleValueProvider = featureToggleValueProvider;
-        }
-
-        public IFeatureToggleValueProvider FeatureToggleValueProvider
-        {
-            get { return _featureToggleValueProvider; }
-        }
-
-        public bool IsEnabled(IFeatureToggle featureToggle)
-        {
-            return _featureToggleValueProvider.IsEnabled(featureToggle.Identity);
-        }
-    }
-
-    public interface IFeatureToggleValueProvider
-    {
-        bool IsEnabled(string featureToggleIdentity);
-    }
 }
