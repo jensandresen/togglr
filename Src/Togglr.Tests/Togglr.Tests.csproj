@@ -51,22 +51,12 @@
   <ItemGroup>
     <Compile Include="Builders\FeatureToggleValueProviderBuilder.cs" />
     <Compile Include="Builders\IFeatureToggleBuilder.cs" />
-    <Compile Include="Configuration.cs" />
-    <Compile Include="ConfigurationBuilder.cs" />
-    <Compile Include="FeatureToggle.cs" />
-    <Compile Include="FeatureToggleService.cs" />
-    <Compile Include="IConfiguration.cs" />
-    <Compile Include="IFeatureToggle.cs" />
-    <Compile Include="IFeatureToggleValueProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestFeatureValueProviderDecorator.cs" />
     <Compile Include="TestConfigurationBuilder.cs" />
     <Compile Include="TestFeatureToggle.cs" />
     <Compile Include="TestFeatureToggleService.cs" />
     <Compile Include="TestTogglrEngine.cs" />
     <Compile Include="TestTogglrSimpleFileValueProvider.cs" />
-    <Compile Include="TogglrEngine.cs" />
-    <Compile Include="TogglrSimpleFileValueProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Moq;
+using Togglr.ValueProviders;
 
 namespace Togglr.Tests.Builders
 {

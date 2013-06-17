@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Togglr.ValueProviders;
 
-namespace Togglr.Tests
+namespace Togglr
 {
     internal class RequestFeatureValueProviderDecorator : IFeatureToggleValueProvider
     {

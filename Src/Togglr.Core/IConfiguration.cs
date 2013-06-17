@@ -1,4 +1,6 @@
-namespace Togglr.Tests
+using Togglr.ValueProviders;
+
+namespace Togglr
 {
     public interface IConfiguration
     {

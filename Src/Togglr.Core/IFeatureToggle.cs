@@ -1,4 +1,4 @@
-namespace Togglr.Tests
+namespace Togglr
 {
     public interface IFeatureToggle
     {

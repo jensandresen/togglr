@@ -1,6 +1,7 @@
 using System;
+using Togglr.ValueProviders;
 
-namespace Togglr.Tests
+namespace Togglr
 {
     public class FeatureToggleService
     {

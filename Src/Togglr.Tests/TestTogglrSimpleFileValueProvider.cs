@@ -1,5 +1,6 @@
 using System.IO;
 using NUnit.Framework;
+using Togglr.ValueProviders;
 
 namespace Togglr.Tests
 {

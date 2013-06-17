@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace Togglr.Tests
+namespace Togglr.ValueProviders
 {
     public class TogglrSimpleFileValueProvider : IFeatureToggleValueProvider
     {

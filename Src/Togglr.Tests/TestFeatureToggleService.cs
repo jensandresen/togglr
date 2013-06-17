@@ -2,6 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using Togglr.Tests.Builders;
+using Togglr.ValueProviders;
 
 namespace Togglr.Tests
 {

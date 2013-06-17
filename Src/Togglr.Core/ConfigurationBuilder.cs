@@ -1,7 +1,8 @@
 using System.IO;
 using System.Web;
+using Togglr.ValueProviders;
 
-namespace Togglr.Tests
+namespace Togglr
 {
     public class ConfigurationBuilder
     {
