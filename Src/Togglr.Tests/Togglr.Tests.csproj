@@ -59,6 +59,7 @@
     <Compile Include="IFeatureToggle.cs" />
     <Compile Include="IFeatureToggleValueProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestFeatureValueProviderDecorator.cs" />
     <Compile Include="TestConfigurationBuilder.cs" />
     <Compile Include="TestFeatureToggle.cs" />
     <Compile Include="TestFeatureToggleService.cs" />

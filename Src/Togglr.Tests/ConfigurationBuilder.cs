@@ -6,10 +6,12 @@ namespace Togglr.Tests
     public class ConfigurationBuilder
     {
         private IFeatureToggleValueProvider _valueProvider;
+        private bool _enableRequestOverrides;
 
         public ConfigurationBuilder()
         {
             _valueProvider = CreateDefaultValueProvider();
+            _enableRequestOverrides = true;
         }
 
         private IFeatureToggleValueProvider CreateDefaultValueProvider()
@@ -31,9 +33,22 @@ namespace Togglr.Tests
             return this;
         }
 
+        public ConfigurationBuilder DisableRequestOverrides()
+        {
+            _enableRequestOverrides = false;
+            return this;
+        }
+
         public IConfiguration Build()
         {
-            return new Configuration(_valueProvider);
+            var temp = _valueProvider;
+
+            if (_enableRequestOverrides)
+            {
+                temp = new RequestFeatureValueProviderDecorator(temp);
+            }
+
+            return new Configuration(temp);
         }
     }
 }
