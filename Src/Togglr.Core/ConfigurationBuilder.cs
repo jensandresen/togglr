@@ -17,7 +17,7 @@ namespace Togglr
 
         private IFeatureToggleValueProvider CreateDefaultValueProvider()
         {
-            const string fileName = "TogglrFeatureToggles.txt";
+            const string fileName = "featuretoggles.txt";
 
             var folderName = HttpContext.Current != null
                                ? HttpContext.Current.Server.MapPath("~/App_Data/")

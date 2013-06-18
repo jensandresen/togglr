@@ -15,6 +15,11 @@ namespace Togglr.ValueProviders
 
         public bool IsEnabled(string featureToggleIdentity)
         {
+            if (!File.Exists(_filename))
+            {
+                return false;
+            }
+
             var lines = File.ReadAllLines(_filename);
 
             var matchedFeatureToggleRecord = lines
@@ -57,7 +62,10 @@ namespace Togglr.ValueProviders
 
             public bool HasIdentity(string identity)
             {
-                return Identity.Equals(identity, StringComparison.InvariantCultureIgnoreCase);
+                var stripedOtherIdentity = identity.Replace("FeatureToggle", "");
+                var stripedIdentity = Identity.Replace("FeatureToggle", "");
+
+                return stripedIdentity.Equals(stripedOtherIdentity, StringComparison.InvariantCultureIgnoreCase);
             }
         }
     }
