@@ -5,11 +5,11 @@ using System.Web;
 
 namespace Togglr.ValueProviders
 {
-    internal class RequestOverrideFeatureValueProviderDecorator : IFeatureToggleValueProvider
+    internal class EnableFeatureInRequestDecorator : IFeatureToggleValueProvider
     {
         private readonly IFeatureToggleValueProvider _inner;
 
-        public RequestOverrideFeatureValueProviderDecorator(IFeatureToggleValueProvider inner)
+        public EnableFeatureInRequestDecorator(IFeatureToggleValueProvider inner)
         {
             _inner = inner;
         }

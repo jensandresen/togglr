@@ -82,7 +82,7 @@
     <Compile Include="TogglrEngine.cs" />
     <Compile Include="ValueProviders\IFeatureToggleValueProvider.cs" />
     <Compile Include="ValueProviders\FeatureToggleValue.cs" />
-    <Compile Include="ValueProviders\RequestOverrideFeatureValueProviderDecorator.cs" />
+    <Compile Include="ValueProviders\EnableFeatureInRequestDecorator.cs" />
     <Compile Include="ValueProviders\TogglrSimpleFileValueProvider.cs" />
   </ItemGroup>
   <ItemGroup>
