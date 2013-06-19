@@ -2,15 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Togglr.ValueProviders;
 
-namespace Togglr
+namespace Togglr.ValueProviders
 {
-    internal class RequestFeatureValueProviderDecorator : IFeatureToggleValueProvider
+    internal class RequestOverrideFeatureValueProviderDecorator : IFeatureToggleValueProvider
     {
         private readonly IFeatureToggleValueProvider _inner;
 
-        public RequestFeatureValueProviderDecorator(IFeatureToggleValueProvider inner)
+        public RequestOverrideFeatureValueProviderDecorator(IFeatureToggleValueProvider inner)
         {
             _inner = inner;
         }

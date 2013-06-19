@@ -46,7 +46,7 @@ namespace Togglr
 
             if (_enableRequestOverrides)
             {
-                temp = new RequestFeatureValueProviderDecorator(temp);
+                temp = new RequestOverrideFeatureValueProviderDecorator(temp);
             }
 
             return new Configuration(temp);
