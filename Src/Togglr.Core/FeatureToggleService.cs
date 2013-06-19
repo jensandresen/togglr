@@ -29,7 +29,7 @@ namespace Togglr
 
         public bool IsEnabled(string id)
         {
-            var toggleValue = _featureToggleValueProvider.GetByIdentitier(id);
+            var toggleValue = _featureToggleValueProvider.GetById(id);
             return toggleValue != null && toggleValue.IsEnabled;
         }
     }

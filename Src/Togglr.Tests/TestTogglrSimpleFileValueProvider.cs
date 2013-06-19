@@ -51,7 +51,7 @@ namespace Togglr.Tests
             File.AppendAllLines(_filename, content);
 
             var sut = new TogglrSimpleFileValueProvider(_filename);
-            var result = sut.GetByIdentitier(id);
+            var result = sut.GetById(id);
 
             Assert.AreEqual(expectedState, result.IsEnabled);
         }

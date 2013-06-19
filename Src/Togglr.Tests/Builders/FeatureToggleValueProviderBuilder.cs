@@ -32,7 +32,7 @@ namespace Togglr.Tests.Builders
         public IFeatureToggleValueProvider Build()
         {
             var stub = new Mock<IFeatureToggleValueProvider>();
-            stub.Setup(p => p.GetByIdentitier(It.IsAny<string>())).Returns<string>(id => _toggles.ContainsKey(id) ? _toggles[id] : null);
+            stub.Setup(p => p.GetById(It.IsAny<string>())).Returns<string>(id => _toggles.ContainsKey(id) ? _toggles[id] : null);
 
             return stub.Object;
         }

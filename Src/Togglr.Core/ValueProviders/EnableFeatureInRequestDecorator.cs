@@ -36,10 +36,10 @@ namespace Togglr.ValueProviders
             return toggleValues;
         }
 
-        public FeatureToggleValue GetByIdentitier(string id)
+        public FeatureToggleValue GetById(string id)
         {
             var toggleValue = GetFeatureToggleValues().FirstOrDefault(toggle => toggle.HasId(id));
-            return toggleValue ?? _inner.GetByIdentitier(id);
+            return toggleValue ?? _inner.GetById(id);
         }
     }
 }
