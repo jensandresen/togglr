@@ -15,7 +15,7 @@ namespace Togglr
             _inner = inner;
         }
 
-        private IEnumerable<string> GetEnabledFeaturesFromQueryString()
+        private IEnumerable<string> GetFeatureIdentitiersFromQueryString()
         {
             if (HttpContext.Current == null)
             {
@@ -28,12 +28,19 @@ namespace Togglr
             return features;
         }
 
-        public bool IsEnabled(string featureToggleIdentity)
+        private IEnumerable<FeatureToggleValue> GetFeatureToggleValues()
         {
-            var enabledFeatures = GetEnabledFeaturesFromQueryString();
-            var isEnabledInRequest = enabledFeatures.Any(feature => feature.Equals(featureToggleIdentity, StringComparison.InvariantCultureIgnoreCase));
+            var toggleValues = GetFeatureIdentitiersFromQueryString()
+                .Select(identity => new FeatureToggleValue(identity, true))
+                .ToArray();
 
-            return isEnabledInRequest || _inner.IsEnabled(featureToggleIdentity);
+            return toggleValues;
+        }
+
+        public FeatureToggleValue GetByIdentitier(string identifier)
+        {
+            var toggleValue = GetFeatureToggleValues().FirstOrDefault(toggle => toggle.HasIdentity(identifier));
+            return toggleValue ?? _inner.GetByIdentitier(identifier);
         }
     }
 }

@@ -2,6 +2,6 @@ namespace Togglr.ValueProviders
 {
     public interface IFeatureToggleValueProvider
     {
-        bool IsEnabled(string featureToggleIdentity);
+        FeatureToggleValue GetByIdentitier(string identifier);
     }
 }

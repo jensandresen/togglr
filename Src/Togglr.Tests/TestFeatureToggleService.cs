@@ -34,7 +34,7 @@ namespace Togglr.Tests
             var sut = new FeatureToggleService(mock.Object);
             sut.IsEnabled(featureToggleStub);
 
-            mock.Verify(p => p.IsEnabled(featureToggleStub.Identity));
+            mock.Verify(p => p.GetByIdentitier(featureToggleStub.Identity));
         }
     }
 }

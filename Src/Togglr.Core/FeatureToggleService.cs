@@ -29,7 +29,8 @@ namespace Togglr
 
         public bool IsEnabled(string identity)
         {
-            return _featureToggleValueProvider.IsEnabled(identity);
+            var toggleValue = _featureToggleValueProvider.GetByIdentitier(identity);
+            return toggleValue != null && toggleValue.IsEnabled;
         }
     }
 }

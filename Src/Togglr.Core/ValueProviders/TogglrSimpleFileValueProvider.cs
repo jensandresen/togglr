@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -13,60 +13,24 @@ namespace Togglr.ValueProviders
             _filename = filename;
         }
 
-        public bool IsEnabled(string featureToggleIdentity)
+        private IEnumerable<FeatureToggleValue> GetFeatureToggleValues()
         {
             if (!File.Exists(_filename))
             {
-                return false;
+                return Enumerable.Empty<FeatureToggleValue>();
             }
 
             var lines = File.ReadAllLines(_filename);
+            var toggleValues = lines
+                .Select(text => FeatureToggleValue.Parse(text))
+                .ToArray();
 
-            var matchedFeatureToggleRecord = lines
-                .Select(lineOfText => ToggleRecord.Parse(lineOfText))
-                .FirstOrDefault(r => r.HasIdentity(featureToggleIdentity));
-
-            return matchedFeatureToggleRecord != null && matchedFeatureToggleRecord.IsEnabled;
+            return toggleValues;
         }
 
-        private class ToggleRecord
+        public FeatureToggleValue GetByIdentitier(string identifier)
         {
-            public ToggleRecord(string identity, bool isEnabled)
-            {
-                Identity = identity;
-                IsEnabled = isEnabled;
-            }
-
-            public string Identity { get; private set; }
-            public bool IsEnabled { get; private set; }
-
-            public static ToggleRecord Parse(string text)
-            {
-                var elements = text.Split('=');
-                
-                var identity = elements[0];
-                var isEnabled = ParseState(elements[1]);
-
-                return new ToggleRecord(identity, isEnabled);
-            }
-
-            private static bool ParseState(string text)
-            {
-                if ("on".Equals(text, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    return true;
-                }
-
-                return false;
-            }
-
-            public bool HasIdentity(string identity)
-            {
-                var stripedOtherIdentity = identity.Replace("FeatureToggle", "");
-                var stripedIdentity = Identity.Replace("FeatureToggle", "");
-
-                return stripedIdentity.Equals(stripedOtherIdentity, StringComparison.InvariantCultureIgnoreCase);
-            }
+            return GetFeatureToggleValues().FirstOrDefault(toggleValue => toggleValue.HasIdentity(identifier));
         }
     }
 }
