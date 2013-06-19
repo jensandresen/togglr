@@ -6,6 +6,11 @@ namespace Togglr.ValueProviders
     {
         public FeatureToggleValue(string identity, bool isEnabled)
         {
+            if (string.IsNullOrWhiteSpace(identity))
+            {
+                throw new ArgumentException("Null, empty or whitespace is not accepted as an identifier.", "identity");
+            }
+
             Identity = identity;
             IsEnabled = isEnabled;
         }
@@ -15,15 +20,25 @@ namespace Togglr.ValueProviders
 
         public bool HasIdentity(string identity)
         {
-            var stripedIdentity = Identity.Replace("FeatureToggle", "");
-            var stripedOtherIdentity = identity.Replace("FeatureToggle", "");
+            var stripedIdentity = Identity.ToLowerInvariant().Replace("featuretoggle", "");
+            var stripedOtherIdentity = identity.ToLowerInvariant().Replace("featuretoggle", "");
 
             return stripedIdentity.Equals(stripedOtherIdentity, StringComparison.InvariantCultureIgnoreCase);
         }
 
         public static FeatureToggleValue Parse(string text)
         {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                throw new ArgumentException();
+            }
+
             var elements = text.Split('=');
+
+            if (elements.Length != 2 || string.IsNullOrWhiteSpace(elements[0]) || string.IsNullOrWhiteSpace(elements[1]))
+            {
+                throw new FormatException("Not expected format of text. It must be identifier=on or identifier=off");
+            }
                 
             var identity = elements[0];
             var isEnabled = ParseToggleState(elements[1]);

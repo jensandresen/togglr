@@ -55,6 +55,7 @@
     <Compile Include="TestConfigurationBuilder.cs" />
     <Compile Include="TestFeatureToggle.cs" />
     <Compile Include="TestFeatureToggleService.cs" />
+    <Compile Include="TestFeatureToggleValue.cs" />
     <Compile Include="TestTogglrEngine.cs" />
     <Compile Include="TestTogglrSimpleFileValueProvider.cs" />
   </ItemGroup>
