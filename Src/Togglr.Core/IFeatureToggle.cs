@@ -2,7 +2,7 @@ namespace Togglr
 {
     public interface IFeatureToggle
     {
-        string Identity { get; }
+        string Id { get; }
         bool IsEnabled { get; }
     }
 }

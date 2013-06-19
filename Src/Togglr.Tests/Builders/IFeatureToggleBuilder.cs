@@ -20,7 +20,7 @@ namespace Togglr.Tests.Builders
         public IFeatureToggle Build()
         {
             var stub = new Mock<IFeatureToggle>();
-            stub.Setup(t => t.Identity).Returns(_identity);
+            stub.Setup(t => t.Id).Returns(_identity);
 
             return stub.Object;
         }

@@ -24,7 +24,7 @@ namespace Togglr
 
         public bool IsEnabled(IFeatureToggle featureToggle)
         {
-            return IsEnabled(featureToggle.Identity);
+            return IsEnabled(featureToggle.Id);
         }
 
         public bool IsEnabled(string identity)
