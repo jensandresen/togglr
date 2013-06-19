@@ -13,17 +13,17 @@ namespace Togglr.Tests.Builders
             _toggles = new Dictionary<string, FeatureToggleValue>();
         }
 
-        public FeatureToggleValueProviderBuilder WithFeatureToggle(string identity, bool isEnabled)
+        public FeatureToggleValueProviderBuilder WithFeatureToggle(string id, bool isEnabled)
         {
-            var toggleValue = new FeatureToggleValue(identity, isEnabled);
+            var toggleValue = new FeatureToggleValue(id, isEnabled);
 
-            if (_toggles.ContainsKey(identity))
+            if (_toggles.ContainsKey(id))
             {
-                _toggles[identity] = toggleValue;
+                _toggles[id] = toggleValue;
             }
             else
             {
-                _toggles.Add(identity, toggleValue);
+                _toggles.Add(id, toggleValue);
             }
 
             return this;
@@ -32,7 +32,7 @@ namespace Togglr.Tests.Builders
         public IFeatureToggleValueProvider Build()
         {
             var stub = new Mock<IFeatureToggleValueProvider>();
-            stub.Setup(p => p.GetByIdentitier(It.IsAny<string>())).Returns<string>(identity => _toggles.ContainsKey(identity) ? _toggles[identity] : null);
+            stub.Setup(p => p.GetByIdentitier(It.IsAny<string>())).Returns<string>(id => _toggles.ContainsKey(id) ? _toggles[id] : null);
 
             return stub.Object;
         }

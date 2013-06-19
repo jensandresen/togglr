@@ -28,9 +28,9 @@ namespace Togglr.ValueProviders
             return toggleValues;
         }
 
-        public FeatureToggleValue GetByIdentitier(string identifier)
+        public FeatureToggleValue GetByIdentitier(string id)
         {
-            return GetFeatureToggleValues().FirstOrDefault(toggleValue => toggleValue.HasIdentity(identifier));
+            return GetFeatureToggleValues().FirstOrDefault(toggleValue => toggleValue.HasId(id));
         }
     }
 }

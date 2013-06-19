@@ -41,17 +41,17 @@ namespace Togglr.Tests
         [TestCase("toggle_id", "on", true)]
         [TestCase("toggle_id", "ON", true)]
         [TestCase("toggle_id", "off", false)]
-        public void can_read_a_single_toggle(string identity, string state, bool expectedState)
+        public void can_read_a_single_toggle(string id, string state, bool expectedState)
         {
             var content = new[]
                               {
-                                  string.Format("{0}={1}", identity, state),
+                                  string.Format("{0}={1}", id, state),
                               };
 
             File.AppendAllLines(_filename, content);
 
             var sut = new TogglrSimpleFileValueProvider(_filename);
-            var result = sut.GetByIdentitier(identity);
+            var result = sut.GetByIdentitier(id);
 
             Assert.AreEqual(expectedState, result.IsEnabled);
         }

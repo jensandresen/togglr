@@ -4,23 +4,23 @@ namespace Togglr.Tests.Builders
 {
     internal class IFeatureToggleBuilder
     {
-        private string _identity;
+        private string _id;
 
         public IFeatureToggleBuilder()
         {
-            _identity = "a feature toggle identity";
+            _id = "a feature toggle identity";
         }
 
-        public IFeatureToggleBuilder WithIdentity(string identity)
+        public IFeatureToggleBuilder WithId(string id)
         {
-            _identity = identity;
+            _id = id;
             return this;
         }
 
         public IFeatureToggle Build()
         {
             var stub = new Mock<IFeatureToggle>();
-            stub.Setup(t => t.Id).Returns(_identity);
+            stub.Setup(t => t.Id).Returns(_id);
 
             return stub.Object;
         }

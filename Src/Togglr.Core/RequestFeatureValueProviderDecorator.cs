@@ -31,16 +31,16 @@ namespace Togglr
         private IEnumerable<FeatureToggleValue> GetFeatureToggleValues()
         {
             var toggleValues = GetFeatureIdentitiersFromQueryString()
-                .Select(identity => new FeatureToggleValue(identity, true))
+                .Select(id => new FeatureToggleValue(id, true))
                 .ToArray();
 
             return toggleValues;
         }
 
-        public FeatureToggleValue GetByIdentitier(string identifier)
+        public FeatureToggleValue GetByIdentitier(string id)
         {
-            var toggleValue = GetFeatureToggleValues().FirstOrDefault(toggle => toggle.HasIdentity(identifier));
-            return toggleValue ?? _inner.GetByIdentitier(identifier);
+            var toggleValue = GetFeatureToggleValues().FirstOrDefault(toggle => toggle.HasId(id));
+            return toggleValue ?? _inner.GetByIdentitier(id);
         }
     }
 }

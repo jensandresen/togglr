@@ -13,7 +13,7 @@ namespace Togglr.Tests
         }
 
         [Test]
-        public void identity_returns_name_of_class()
+        public void id_returns_name_of_class()
         {
             var sut = new FeatureToggle();
             Assert.AreEqual("FeatureToggle", sut.Id);

@@ -23,9 +23,9 @@ namespace Togglr
             _featureToggleService = new FeatureToggleService(configuration.ValueProvider);
         }
 
-        public static bool IsFeatureEnabled(string identity)
+        public static bool IsFeatureEnabled(string id)
         {
-            return ToggleService.IsEnabled(identity);
+            return ToggleService.IsEnabled(id);
         }
     }
 }
