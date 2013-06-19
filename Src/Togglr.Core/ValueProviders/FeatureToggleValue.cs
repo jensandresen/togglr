@@ -13,6 +13,14 @@ namespace Togglr.ValueProviders
         public string Identity { get; private set; }
         public bool IsEnabled { get; private set; }
 
+        public bool HasIdentity(string identity)
+        {
+            var stripedIdentity = Identity.Replace("FeatureToggle", "");
+            var stripedOtherIdentity = identity.Replace("FeatureToggle", "");
+
+            return stripedIdentity.Equals(stripedOtherIdentity, StringComparison.InvariantCultureIgnoreCase);
+        }
+
         public static FeatureToggleValue Parse(string text)
         {
             var elements = text.Split('=');
@@ -31,14 +39,6 @@ namespace Togglr.ValueProviders
             }
 
             return false;
-        }
-
-        public bool HasIdentity(string identity)
-        {
-            var stripedOtherIdentity = identity.Replace("FeatureToggle", "");
-            var stripedIdentity = Identity.Replace("FeatureToggle", "");
-
-            return stripedIdentity.Equals(stripedOtherIdentity, StringComparison.InvariantCultureIgnoreCase);
         }
     }
 }
