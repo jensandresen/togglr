@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Togglr.ValueProviders
 {
-    internal class EnableFeatureInRequestDecorator : IFeatureToggleValueProvider
+    public class EnableFeatureInRequestDecorator : IFeatureToggleValueProvider
     {
         private readonly IFeatureToggleValueProvider _inner;
 
