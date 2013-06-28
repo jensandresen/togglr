@@ -22,10 +22,26 @@ namespace Togglr.ValueProviders
 
             var lines = File.ReadAllLines(_filename);
             var toggleValues = lines
+                .Where(text => IsValid(text))
                 .Select(text => FeatureToggleValue.Parse(text))
                 .ToArray();
 
             return toggleValues;
+        }
+
+        private bool IsValid(string text)
+        {
+          if (string.IsNullOrWhiteSpace(text))
+          {
+            return false;
+          }
+
+          if (text.Trim().StartsWith("#"))
+          {
+            return false;
+          }
+
+          return true;
         }
 
         public FeatureToggleValue GetById(string id)

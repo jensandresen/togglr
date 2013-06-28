@@ -1,4 +1,5 @@
 using System.IO;
+using System.Reflection;
 using NUnit.Framework;
 using Togglr.ValueProviders;
 
@@ -55,6 +56,33 @@ namespace Togglr.Tests
 
             Assert.AreEqual(expectedState, result.IsEnabled);
         }
+
+      private Stream GetSampleTogglesAsStream()
+      {
+        var stream = Assembly
+        .GetExecutingAssembly()
+        .GetManifestResourceStream("Togglr.Tests.FeatureToggles.txt");
+
+        return stream;
+      }
+
+      [Test]
+      public void test_sample_file_format()
+      {
+        using (var sourceStream = GetSampleTogglesAsStream())
+        {
+          using (var fileStream = File.OpenWrite(_filename))
+          {
+            sourceStream.CopyTo(fileStream);
+            fileStream.Flush();
+          }
+        }
+
+        var valueProvider = new TogglrSimpleFileValueProvider(_filename);
+        var toggle = valueProvider.GetById("TestFeature");
+
+        Assert.IsNotNull(toggle);
+      }
 
     }
 }
