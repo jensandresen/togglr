@@ -14,7 +14,7 @@ Usage
 ======
 Each feature toggle is defined as a c# class that inherites from the "FeatureToggle" -class provided by Togglr-framework.
 
-Definition of a sample feature toggle class:
+Implementation of a sample feature toggle class:
 
 <pre>
 public class SampleFeatureToggle : FeatureToggle
@@ -23,7 +23,7 @@ public class SampleFeatureToggle : FeatureToggle
 }
 </pre>
 
-...done.
+...and you're done!
 
 If you're using the default configuration then you also need to add the following line to FeatureToggles.txt located in your App_Data folder:
 
@@ -61,7 +61,7 @@ You can also temporarily override the value of a feature toggle in a web-request
 
 <pre>http://your-application-url?EnableFeature=Sample</pre>
 
-A request to the url above will temporarily enable the "Sample" feature toggle. You can the send that link to reviewers/approvers/etc.
+A request to the url above will temporarily enable the "Sample" feature toggle. You can then send that link to reviewers/approvers/etc.
 
 And remember - you can seperate the identifiers by a comma like this:
 
