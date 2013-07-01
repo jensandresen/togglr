@@ -1,6 +1,14 @@
 Togglr
 ======
-Just another feature toggle library for .net
+Just another feature toggle library for .net (mvc)
+
+How it works
+======
+Each feature toggle is based on the mono state pattern. This means that you can (and should if needed) instantiate your feature toggles where ever you need to verify that a given feature is enabled or disabled. You just "new up" the targeted feature toggle and access its "IsEnabled" property. The mono state pattern enables that two or more instances of the same feature toggle class will return the same value from its "IsEnabled" property. 
+
+The framework will use the name of the feature toggle class as an identifier when retrieving the stored feature toggle state. It will ignore "FeatureToggle" in the end of an identifier. This means that a class named "SampleFeatureToggle" will have "Sample" as its identifier by default.
+
+Feature toggle values are stored in a file located in your projects App_Data folder. This is the default configuration that you get out-of-the-box. The file format is very simple (see the section "Default file format" for more details). You add new feature toggles (and their value) to this file when ever you create new feature toggles. But you are not stuck with the default configuration. You can store the feature toggle values where ever you want and then just create a value provider that plugges into the Togglr-framework (see the section "Custom value provider" for more details).
 
 Usage
 ======
@@ -77,14 +85,6 @@ You have to include the following using-statement to your views:
 <pre>using Togglr.Extensions</pre>
 
 ...I would suggest that you add the namespace to your web.config though.
-
-How it works
-======
-Each feature toggle is based on the mono state pattern. This means that you can (and should if needed) instantiate your feature toggles where ever you need to verify that a given feature is enabled or disabled. You just "new up" the targeted feature toggle and access its "IsEnabled" property. The mono state pattern enables that two or more instances of the same feature toggle class will return the same value from its "IsEnabled" property. 
-
-The framework will use the name of the feature toggle class as an identifier when retrieving the stored feature toggle state. It will ignore "FeatureToggle" in the end of an identifier. This means that a class named "SampleFeatureToggle" will have "Sample" as its identifier by default.
-
-Feature toggle values are stored in a file located in your projects App_Data folder. This is the default configuration that you get out-of-the-box. The file format is very simple (see the section "Default file format" for more details). You add new feature toggles (and their value) to this file when ever you create new feature toggles. But you are not stuck with the default configuration. You can store the feature toggle values where ever you want and then just create a value provider that plugges into the Togglr-framework (see the section "Custom value provider" for more details).
 
 Default file format
 ======
