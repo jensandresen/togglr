@@ -52,7 +52,7 @@ And remember - you can seperate the identifiers by a comma like this:
 <pre>http://your-application-url?EnableFeature=Sample1,Sample2,Sample3</pre>
 The Togglr framework comes with extensions for the HtmlHelper class that is defined in the MVC framework. This lets you define the markup for your features in the following ways:
 
-Add your feature as a partial view and instead of calling
+1) Add your feature as a partial view and instead of calling
 ```csharp
 @Html.Partial("partialViewName)
 ```
@@ -60,7 +60,7 @@ you would do
 ```csharp
 @Html.PartialAsFeature("partialViewName", new SampleFeatureToggle())
 ```
-Add your feature as "inline" by defining it inside an if-scope like this:
+2) Add your feature as "inline" by defining it inside an if-scope like this:
 ```csharp
 @if (Html.IsFeatureEnabled(new SampleFeatureToggle()))
 {
@@ -69,7 +69,7 @@ Add your feature as "inline" by defining it inside an if-scope like this:
 ```
 You have to include the following using-statement to your views:
 ```csharp
-using Togglr.Extensions</pre>
+using Togglr.Extensions
 ```
 ...I would suggest that you add the namespace to your web.config though.
 
