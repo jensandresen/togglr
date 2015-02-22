@@ -45,7 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileValueParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestFileValueParser.cs" />
+    <Compile Include="TestToggleValue.cs" />
+    <Compile Include="ToggleValue.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Togglr.Core\Togglr.Core.csproj">
