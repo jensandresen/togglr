@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Togglr.Files;
 
 namespace Togglr.Tests
 {

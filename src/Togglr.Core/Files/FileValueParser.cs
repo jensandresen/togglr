@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Togglr.Tests
+namespace Togglr.Files
 {
     public class FileValueParser
     {

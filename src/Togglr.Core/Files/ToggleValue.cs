@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Togglr.Tests
+namespace Togglr.Files
 {
     public class ToggleValue
     {
