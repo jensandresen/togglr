@@ -39,9 +39,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FeatureToggleBase.cs" />
+    <Compile Include="Files\FileBasedToggleValueProvider.cs" />
     <Compile Include="Files\FileValueParser.cs" />
     <Compile Include="Files\ToggleValue.cs" />
+    <Compile Include="IFeatureToggle.cs" />
+    <Compile Include="IToggleService.cs" />
+    <Compile Include="IToggleValue.cs" />
+    <Compile Include="IToggleValueProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TogglrEngine.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

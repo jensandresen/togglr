@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace Togglr.Files
 {
-    public class ToggleValue
+    public class ToggleValue : IToggleValue
     {
         private const string Pattern = @"^\s*(\w+)\s*\=\s*(on|off)\s*(\#.*)?$";
 
@@ -13,8 +13,8 @@ namespace Togglr.Files
             IsEnabled = isEnabled;
         }
 
-        public string Name;
-        public bool IsEnabled;
+        public string Name { get; private set; }
+        public bool IsEnabled { get; private set; }
 
         protected bool Equals(ToggleValue other)
         {
